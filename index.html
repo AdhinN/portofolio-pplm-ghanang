@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portofolio PPG Prajabatan - Ghanang Adhin Nugroho, S.Kom.</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ppg: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-relaxed antialiased custom-scrollbar min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER & NAVIGATION BAR (1 BARIS RAPI) -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo & Title -->
+                <div class="flex items-center gap-3 shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-ppg-600 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-ppg-500/20">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold tracking-wider text-ppg-600 uppercase block whitespace-nowrap">E-Portofolio PPG Prajabatan</span>
+                        <h1 class="text-sm sm:text-base font-bold text-slate-900 leading-tight whitespace-nowrap">Ghanang Adhin Nugroho, S.Kom.</h1>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links (Single Line Clean Nav) -->
+                <nav class="hidden lg:flex items-center space-x-1 text-xs font-semibold text-slate-600">
+                    <button onclick="switchMainTab('beranda')" id="nav-beranda" class="nav-btn px-3 py-2 rounded-lg transition text-ppg-600 bg-ppg-50 whitespace-nowrap">
+                        <i class="fa-solid fa-house mr-1"></i> Beranda
+                    </button>
+                    <button onclick="switchMainTab('orientasi')" id="nav-orientasi" class="nav-btn px-3 py-2 rounded-lg transition hover:text-ppg-600 hover:bg-slate-100 whitespace-nowrap">
+                        <i class="fa-solid fa-clipboard-list mr-1"></i> LK 1 & 2
+                    </button>
+                    <button onclick="switchMainTab('siklus')" id="nav-siklus" class="nav-btn px-3 py-2 rounded-lg transition hover:text-ppg-600 hover:bg-slate-100 whitespace-nowrap">
+                        <i class="fa-solid fa-layer-group mr-1"></i> Siklus 1 - 4
+                    </button>
+                    <button onclick="switchMainTab('non-mengajar')" id="nav-non-mengajar" class="nav-btn px-3 py-2 rounded-lg transition hover:text-ppg-600 hover:bg-slate-100 whitespace-nowrap">
+                        <i class="fa-solid fa-handshake mr-1"></i> Non-Mengajar
+                    </button>
+                    <button onclick="switchMainTab('refleksi')" id="nav-refleksi" class="nav-btn px-3 py-2 rounded-lg transition hover:text-ppg-600 hover:bg-slate-100 whitespace-nowrap">
+                        <i class="fa-solid fa-brain mr-1"></i> Refleksi & RTL
+                    </button>
+                </nav>
+
+                <!-- Status Badge -->
+                <div class="hidden xl:flex items-center shrink-0">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 whitespace-nowrap">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        SMA N 2 Salatiga
+                    </span>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-4 space-y-1">
+            <button onclick="switchMainTab('beranda'); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Beranda & Profil</button>
+            <button onclick="switchMainTab('orientasi'); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">LK 1 & LK 2 Observasi</button>
+            <button onclick="switchMainTab('siklus'); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Siklus 1 - 4 (Video, Laporan & Artefak)</button>
+            <button onclick="switchMainTab('non-mengajar'); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Kegiatan Non-Mengajar</button>
+            <button onclick="switchMainTab('refleksi'); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-100">Refleksi Kritis & RTL</button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
+
+        <!-- TAB 1: BERANDA & PROFIL GURU -->
+        <div id="tab-beranda" class="main-tab-content block space-y-8 animate-in fade-in duration-300">
+            <!-- Banner Top Gradient -->
+            <div class="relative bg-gradient-to-r from-ppg-900 via-ppg-800 to-ppg-600 rounded-3xl p-8 sm:p-12 text-white overflow-hidden shadow-xl">
+                <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+                <div class="relative z-10 max-w-3xl">
+                    <div class="flex flex-wrap items-center gap-2 mb-4">
+                        <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wide uppercase text-ppg-100">
+                            PPG Calon Guru 2026
+                        </span>
+                        <span class="px-3 py-1 bg-amber-400/20 text-amber-200 backdrop-blur-md rounded-full text-xs font-semibold tracking-wide uppercase">
+                            PPL Mandiri Informatika
+                        </span>
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-4">
+                        E-Portofolio Praktik Pengalaman Lapangan (PPL) Mandiri
+                    </h2>
+                    <p class="text-ppg-100 text-sm sm:text-base leading-relaxed">
+                        Portal dokumentasi komprehensif mencakup Laporan PPL Mandiri Siklus 1 - 4, Artefak Modul Ajar, PPT, LKPD, Analisis Pedagogis, Rekaman Video Mengajar, Kegiatan Non-Mengajar, serta Refleksi Kritis di SMA Negeri 2 Salatiga.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Profile & Introduction Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Profile Card -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex flex-col items-center text-center pb-6 border-b border-slate-100">
+                            <div class="relative mb-4">
+                                <img src="https://lh3.googleusercontent.com/d/1jm-kPawKYp6-20kSTMkOOAqyN98fm8eU" 
+                                     alt="Foto Ghanang Adhin Nugroho" 
+                                     class="w-32 h-32 rounded-full object-cover object-top ring-4 ring-ppg-100 shadow-md">
+                                <span class="absolute bottom-1 right-1 bg-emerald-500 w-5 h-5 rounded-full border-2 border-white" title="Aktif PPG Prajabatan"></span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900">Ghanang Adhin Nugroho, S.Kom.</h3>
+                            <p class="text-sm font-semibold text-ppg-600">Mahasiswa PPG Prajabatan 2026</p>
+                            <p class="text-xs text-slate-500 mt-1">Pendidikan Informatika - UKSW Salatiga</p>
+                        </div>
+
+                        <!-- Biodata List -->
+                        <div class="py-6 space-y-3 text-xs sm:text-sm">
+                            <div class="flex justify-between items-center text-slate-600">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-id-card text-ppg-500 w-4"></i> NIM:</span>
+                                <span class="font-bold text-slate-800">95202534N</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-600">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-school text-ppg-500 w-4"></i> Sekolah PPL:</span>
+                                <span class="font-bold text-slate-800">SMA Negeri 2 Salatiga</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-600">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-ppg-500 w-4"></i> Guru Pamong:</span>
+                                <span class="font-semibold text-slate-800">Ignasius Panggayuh, M.Kom.</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-600">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-user-graduate text-ppg-500 w-4"></i> DPL UKSW:</span>
+                                <span class="font-semibold text-slate-800">Hanita Yulia, M.Pd.</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-600">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-users-viewfinder text-ppg-500 w-4"></i> Kelas Sasaran:</span>
+                                <span class="font-semibold text-slate-800">Kelas XI-I (Fase F - 34 Siswa)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Shortcut Buttons -->
+                    <div class="pt-4 border-t border-slate-100 flex gap-2">
+                        <button onclick="switchMainTab('siklus')" class="flex-1 text-center py-2.5 px-3 bg-ppg-600 hover:bg-ppg-700 text-white text-xs font-semibold rounded-xl transition shadow-sm">
+                            <i class="fa-solid fa-layer-group mr-1"></i> Lihat Siklus 1-4
+                        </button>
+                        <button onclick="switchMainTab('non-mengajar')" class="flex-1 text-center py-2.5 px-3 bg-slate-100 hover:bg-ppg-50 hover:text-ppg-600 text-slate-700 text-xs font-semibold rounded-xl transition">
+                            <i class="fa-solid fa-handshake mr-1"></i> Non-Mengajar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pengantar E-Portofolio -->
+                <div class="lg:col-span-2 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-book-open-reader text-ppg-600"></i> Pengantar E-Portofolio PPL Mandiri
+                            </h3>
+                            <span class="text-xs bg-ppg-50 text-ppg-700 font-semibold px-2.5 py-1 rounded-md border border-ppg-200">
+                                Evidence-Based Learning
+                            </span>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Selamat datang di E-Portofolio Praktik Pengalaman Lapangan (PPL) Mandiri PPG Prajabatan Bidang Studi Pendidikan Informatika Universitas Kristen Satya Wacana (UKSW). Website portofolio ini terstruktur secara modular untuk menyajikan bukti fisik, analisis pedagogis kritis, rekaman video pembelajaran, serta refleksi berkelanjutan selama mengajar di SMA Negeri 2 Salatiga.
+                        </p>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Pembelajaran dirancang secara terpadu memanfaatkan pendekatan <strong>Teaching at the Right Level (TaRL)</strong>, <strong>Culturally Responsive Teaching (CRT)</strong>, <strong>Project-Based Learning (PjBL)</strong>, dan diintegrasikan langsung dengan alat praktikum Google Colab untuk pemrograman Python.
+                        </p>
+
+                        <!-- Key Pillars Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm mb-2">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                </div>
+                                <h4 class="font-bold text-sm text-slate-800">Siklus 1 & 2</h4>
+                                <p class="text-xs text-slate-500 mt-1">Produk Digital, SDLC, & 4 Pilar Berpikir Komputasional (Kasus Kantin).</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm mb-2">
+                                    <i class="fa-solid fa-code text-emerald-600"></i>
+                                </div>
+                                <h4 class="font-bold text-sm text-slate-800">Siklus 3 & 4</h4>
+                                <p class="text-xs text-slate-500 mt-1">Dasar Python, List, Stack, Queue, Fungsi, & Ujian Live Coding Open Notes.</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-sm mb-2">
+                                    <i class="fa-solid fa-drum"></i>
+                                </div>
+                                <h4 class="font-bold text-sm text-slate-800">Non-Mengajar</h4>
+                                <p class="text-xs text-slate-500 mt-1">Drumband Gita Bahana Sakti, Guru Piket 5S, & PCP 2026 (Total 87 Jam).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Navigation Helper -->
+                    <div class="p-4 bg-ppg-50 rounded-xl border border-ppg-100 flex flex-wrap items-center justify-between gap-3 text-xs text-ppg-800">
+                        <span class="font-medium"><i class="fa-solid fa-circle-info text-ppg-600 mr-1"></i> Pilih menu tab di atas untuk menjelajahi Laporan, Video, Artefak, dan Evaluasi secara mandiri.</span>
+                        <button onclick="switchMainTab('siklus')" class="font-bold text-ppg-600 hover:text-ppg-800 underline">Buka Tab Siklus Pembelajaran →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: LK 1 & LK 2 (ORIENTASI & OBSERVASI) -->
+        <div id="tab-orientasi" class="main-tab-content hidden space-y-8 animate-in fade-in duration-300">
+            <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <span class="text-xs font-bold text-ppg-600 tracking-wider uppercase">Pengamatan Lapangan</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900">Hasil Orientasi & Observasi (LK 1 & LK 2)</h2>
+                </div>
+                <span class="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-200 rounded-lg text-xs font-semibold self-start sm:self-auto">
+                    SMA Negeri 2 Salatiga
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- LK 1 Card -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-md">LK 1</span>
+                            <span class="text-xs text-slate-400"><i class="fa-solid fa-eye mr-1"></i> Live Interactive Viewer</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Orientasi & Observasi Manajemen Sekolah</h3>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Mencakup analisis Visi-Misi KSP 2026/2027 ("SMANDA BERJAYA"), Struktur Organisasi satu pintu, Tata Tertib Sekolah Berintegritas (SBI), Sistem SKS Mandiri Berubah, Manajemen SDM, Sarpras 3 Lab Komputer, serta transparansi anggaran via ARKAS.
+                        </p>
+                        
+                        <!-- Embedded Document Frame Hub -->
+                        <div class="w-full h-96 bg-slate-900 rounded-xl border border-slate-200 overflow-hidden mb-4 relative group">
+                            <iframe 
+                                id="frame-lk1"
+                                src="https://drive.google.com/file/d/1FVRrTy27ADnpT2XXS9YASB5MXN56yEnd/preview" 
+                                class="w-full h-full border-0 bg-white" 
+                                allow="autoplay"
+                                title="LK 1 Orientasi PPLM">
+                            </iframe>
+                            <div class="absolute bottom-3 right-3 flex gap-2">
+                                <button onclick="reloadIframe('frame-lk1', 'https://drive.google.com/file/d/1FVRrTy27ADnpT2XXS9YASB5MXN56yEnd/preview')" class="px-3 py-1.5 bg-slate-900/80 hover:bg-slate-900 text-white text-xs rounded-lg backdrop-blur-sm transition">
+                                    <i class="fa-solid fa-rotate-right mr-1"></i> Reload Frame
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs space-y-1">
+                            <span class="font-bold text-slate-800">Catatan Ringkas Observasi:</span>
+                            <p class="text-slate-600">SMA Negeri 2 Salatiga memiliki 1.157 siswa dengan rasio guru-murid ideal (1:18). Sistem informasi administrasi terdigitalisasi, didukung program pembiasaan karakter G7KAIH & Jumat Berlian.</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-between items-center text-xs">
+                        <span class="text-slate-500 truncate max-w-[200px]"><i class="fa-solid fa-file-pdf text-red-500 mr-1"></i> LK1_Orientasi_PPLM_Ghanang.pdf</span>
+                        <a href="https://drive.google.com/file/d/1FVRrTy27ADnpT2XXS9YASB5MXN56yEnd/view?usp=sharing" target="_blank" class="font-bold text-ppg-600 hover:text-ppg-800 flex items-center gap-1">
+                            Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- LK 2 Card -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-md">LK 2</span>
+                            <span class="text-xs text-slate-400"><i class="fa-solid fa-eye mr-1"></i> Live Interactive Viewer</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Observasi Lingkungan Belajar & Profiling Siswa</h3>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Hasil asesmen awal non-kognitif pada kelas XI-I (34 siswa): Gaya belajar Kinestetik (38.2%) & Visual (32.4%). Tantangan utama: 50% kesulitan pemahaman konsep & 41.2% cemas takut jawaban salah.
+                        </p>
+                        
+                        <!-- Embedded Document Frame Hub -->
+                        <div class="w-full h-96 bg-slate-900 rounded-xl border border-slate-200 overflow-hidden mb-4 relative group">
+                            <iframe 
+                                id="frame-lk2"
+                                src="https://drive.google.com/file/d/1U9ODW6uljJx3lShesmxeAb4ZKY_CyrFC/preview" 
+                                class="w-full h-full border-0 bg-white" 
+                                allow="autoplay"
+                                title="LK 2 Observasi Lingkungan Belajar">
+                            </iframe>
+                            <div class="absolute bottom-3 right-3 flex gap-2">
+                                <button onclick="reloadIframe('frame-lk2', 'https://drive.google.com/file/d/1U9ODW6uljJx3lShesmxeAb4ZKY_CyrFC/preview')" class="px-3 py-1.5 bg-slate-900/80 hover:bg-slate-900 text-white text-xs rounded-lg backdrop-blur-sm transition">
+                                    <i class="fa-solid fa-rotate-right mr-1"></i> Reload Frame
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs space-y-1">
+                            <span class="font-bold text-slate-800">Catatan Profiling Siswa:</span>
+                            <p class="text-slate-600">16 dari 34 siswa memiliki akses internet terbatas di rumah. Diperlukan rancangan pembelajaran berbasis kertas/luring yang aman dari rasa cemas bertanya.</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-between items-center text-xs">
+                        <span class="text-slate-500 truncate max-w-[200px]"><i class="fa-solid fa-file-pdf text-red-500 mr-1"></i> LK.2.Observasi_PPLM_Ghanang.pdf</span>
+                        <a href="https://drive.google.com/file/d/1U9ODW6uljJx3lShesmxeAb4ZKY_CyrFC/view?usp=sharing" target="_blank" class="font-bold text-ppg-600 hover:text-ppg-800 flex items-center gap-1">
+                            Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: SIKLUS 1 - 4 (VIDEO, LAPORAN & INTERACTIVE ARTEFACT PREVIEWER) -->
+        <div id="tab-siklus" class="main-tab-content hidden space-y-8 animate-in fade-in duration-300">
+            <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <span class="text-xs font-bold text-ppg-600 tracking-wider uppercase">Pelaksanaan Praktik Pembelajaran Mandiri</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900">Dokumentasi Siklus 1 - 4 Lengkap</h2>
+                </div>
+                <!-- Siklus Sub Tabs Navigation -->
+                <div class="flex items-center gap-1 bg-slate-200/70 p-1 rounded-xl text-xs font-semibold text-slate-600 self-start sm:self-auto overflow-x-auto">
+                    <button onclick="switchSiklusSubTab('siklus1')" id="sub-siklus1" class="siklus-sub-btn px-3 py-1.5 rounded-lg bg-white text-ppg-700 shadow-sm">Siklus 1</button>
+                    <button onclick="switchSiklusSubTab('siklus2')" id="sub-siklus2" class="siklus-sub-btn px-3 py-1.5 rounded-lg hover:text-ppg-600">Siklus 2</button>
+                    <button onclick="switchSiklusSubTab('siklus3')" id="sub-siklus3" class="siklus-sub-btn px-3 py-1.5 rounded-lg hover:text-ppg-600">Siklus 3</button>
+                    <button onclick="switchSiklusSubTab('siklus4')" id="sub-siklus4" class="siklus-sub-btn px-3 py-1.5 rounded-lg hover:text-ppg-600">Siklus 4</button>
+                </div>
+            </div>
+
+            <!-- SIKLUS 1 SUB CONTENT -->
+            <div id="siklus-content-1" class="siklus-sub-content block space-y-8">
+                <!-- Header Banner Siklus 1 -->
+                <div class="bg-gradient-to-r from-blue-900 to-ppg-700 rounded-2xl p-6 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="px-2.5 py-1 bg-blue-500/30 text-blue-100 rounded-md text-xs font-bold uppercase tracking-wider">Siklus 1 • TaRL</span>
+                        <h3 class="text-xl font-bold mt-2">Pengantar Informatika, Produk Digital, SDLC & Algoritma</h3>
+                        <p class="text-xs text-blue-100 mt-1">Praktik Mengajar: 5, 6, & 12 Agustus 2026 (Kelas XI-I SMAN 2 Salatiga • 3 Pertemuan)</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Video Card Siklus 1 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fa-brands fa-youtube text-red-600 text-base"></i> Video Mengajar Siklus 1
+                            </h4>
+                            <span class="text-xs text-slate-400">YouTube Embed</span>
+                        </div>
+                        <div class="relative w-full rounded-xl overflow-hidden bg-slate-900 aspect-video shadow-sm">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/T5uVyIwE9mQ" title="Video Mengajar Siklus 1" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-xs text-slate-600">Praktik mengajar mendalam berpendekatan TaRL dengan instrumen Cek Level, 3 Zona Belajar, dan Bedah Ide Solusi Digital.</p>
+                    </div>
+
+                    <!-- Laporan Siklus 1 Preview -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-file-pdf text-red-500 text-base"></i> Laporan Siklus 1
+                            </h4>
+                            <a href="https://drive.google.com/file/d/18NUg0YZWPMBOZj8OyeRh0KWEIy41Xw-y/view?usp=sharing" target="_blank" class="text-xs font-bold text-ppg-600 hover:underline flex items-center gap-1">
+                                Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                        <div class="w-full h-64 bg-slate-900 rounded-xl border border-slate-200 overflow-hidden relative">
+                            <iframe id="frame-laporan-1" src="https://drive.google.com/file/d/18NUg0YZWPMBOZj8OyeRh0KWEIy41Xw-y/preview" class="w-full h-full border-0 bg-white" title="Laporan Siklus 1 Preview"></iframe>
+                        </div>
+                        <p class="text-xs text-slate-600">Laporan memuat Plan-Do-See 3 Pertemuan lengkap dengan LK 4 Refleksi Kritis dan Catatan Pamong Ignasius Panggayuh, M.Kom.</p>
+                    </div>
+                </div>
+
+                <!-- ANALISIS ARTEFAK PEDAGOGIS SIKLUS 1 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-microscope text-ppg-600"></i> Analisis Kritis Artefak Pembelajaran Siklus 1
+                        </h4>
+                        <span class="text-xs bg-blue-50 text-blue-700 font-semibold px-2.5 py-1 rounded-md border border-blue-200">TaRL Integration • 3 Pertemuan</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-file-lines text-blue-600 mr-1"></i> Modul Ajar & Diferensiasi</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Modul Ajar Siklus 1 dirancang komprehensif untuk 3 Pertemuan (6 JP) mengintegrasikan Problem-Based Learning & TaRL.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-chalkboard-user text-amber-600 mr-1"></i> 3 Media Presentasi (PPT 1-3)</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                PPT P1 (Produk Digital), PPT P2 (SDLC 6 Tahap), dan PPT P3 (Algoritma Dasar) disusun bertahap visual dan interaktif.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-list-check text-purple-600 mr-1"></i> 3 Lembar Kerja Siswa (LKPD 1-3)</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                LKPD P1 (Bedah Produk), LKPD P2 (Rancangan SDLC), dan LKPD P3 (Diagram Alir Algoritma) memandu aktivitas berpasangan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVE INTERACTIVE ARTEFACT PREVIEWER HUB SIKLUS 1 (7 ARTEFAK LENGKAP) -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                                <i class="fa-solid fa-folder-open text-ppg-600"></i> Interactive Artefact Viewer Hub - Siklus 1 (7 Artefak)
+                            </h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Pilih salah satu dari 1 Modul Ajar, 3 PPT, atau 3 LKPD di bawah untuk melihat dokumen langsung di layar.</p>
+                        </div>
+                        <a id="btn-artefak-direct-1" href="https://drive.google.com/file/d/13ytArlKmI1m8MCII6Zc6NBKxxwqxN1S7/view?usp=sharing" target="_blank" class="px-3.5 py-1.5 bg-ppg-600 hover:bg-ppg-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 self-start sm:self-auto">
+                            <span>Buka Dokumen Aktif</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <!-- Artefak Selector Sub-Tabs -->
+                    <div class="flex flex-wrap gap-2 text-xs font-medium">
+                        <button onclick="changeArtefakPreview('1', 'https://drive.google.com/file/d/13ytArlKmI1m8MCII6Zc6NBKxxwqxN1S7/preview', 'https://drive.google.com/file/d/13ytArlKmI1m8MCII6Zc6NBKxxwqxN1S7/view?usp=sharing', this)" class="art-tab-1 px-3 py-2 rounded-xl bg-ppg-600 text-white font-semibold transition">
+                            <i class="fa-solid fa-file-pdf mr-1"></i> Modul Ajar Siklus 1
+                        </button>
+                        <button onclick="changeArtefakPreview('1', 'https://drive.google.com/file/d/1P-_VVNwztLPej0Wib4XxEgHUPt8rCfIX/preview', 'https://drive.google.com/file/d/1P-_VVNwztLPej0Wib4XxEgHUPt8rCfIX/view?usp=drive_link', this)" class="art-tab-1 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT Pertemuan 1
+                        </button>
+                        <button onclick="changeArtefakPreview('1', 'https://drive.google.com/file/d/1GnKrpgnV0zzixGJswiLpK1NG10bWTnbO/preview', 'https://drive.google.com/file/d/1GnKrpgnV0zzixGJswiLpK1NG10bWTnbO/view?usp=drive_link', this)" class="art-tab-1 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT Pertemuan 2 (SDLC)
+                        </button>
+                        <button onclick="changeArtefakPreview('1', 'https://drive.google.com/file/d/1_GmAcPSnntmEhT-0fFugD044oh5Z-kuE/preview', 'https://drive.google.com/file/d/1_GmAcPSnntmEhT-0fFugD044oh5Z-kuE/view?usp=drive_link', this)" class="art-tab-1 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT Pertemuan 3 (Algoritma)
+                        </button>
+                        <button onclick="changeArtefakPreview('1', 'https://drive.google.com/file/d/1MK-XxcdpSbrXmxLPr3DofOuu-2UMTNN1/preview', 'https://drive.google.com/file/d/1MK-XxcdpSbrXmxLPr3DofOuu-2UMTNN1/view?usp=drive_link', this)" class="art-tab-1 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-1"></i> LKPD Pertemuan 1
+                        </button>
+                        <button onclick="changeArtefakPreview('1', 'https://drive.google.com/file/d/1HlJbyr9JMdItRL12YQv_4wiSebWMNxRk/preview', 'https://drive.google.com/file/d/1HlJbyr9JMdItRL12YQv_4wiSebWMNxRk/view?usp=drive_link', this)" class="art-tab-1 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-1"></i> LKPD Pertemuan 2 (SDLC)
+                        </button>
+                        <button onclick="changeArtefakPreview('1', 'https://drive.google.com/file/d/1SitZDgKQuFZpvnRTsa2SIAFFY-cSQZtu/preview', 'https://drive.google.com/file/d/1SitZDgKQuFZpvnRTsa2SIAFFY-cSQZtu/view?usp=drive_link', this)" class="art-tab-1 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-1"></i> LKPD Pertemuan 3 (Algoritma)
+                        </button>
+                    </div>
+
+                    <!-- Artefak Display Frame -->
+                    <div class="w-full h-[480px] bg-slate-900 rounded-xl border border-slate-200 overflow-hidden relative shadow-inner">
+                        <iframe id="artefak-viewer-1" src="https://drive.google.com/file/d/13ytArlKmI1m8MCII6Zc6NBKxxwqxN1S7/preview" class="w-full h-full border-0 bg-white" title="Preview Artefak Siklus 1"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIKLUS 2 SUB CONTENT -->
+            <div id="siklus-content-2" class="siklus-sub-content hidden space-y-8">
+                <!-- Header Banner Siklus 2 -->
+                <div class="bg-gradient-to-r from-emerald-900 to-teal-700 rounded-2xl p-6 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="px-2.5 py-1 bg-emerald-500/30 text-emerald-100 rounded-md text-xs font-bold uppercase tracking-wider">Siklus 2 • CRT</span>
+                        <h3 class="text-xl font-bold mt-2">Berpikir Komputasional (Kasus Antrean Kantin Sekolah)</h3>
+                        <p class="text-xs text-emerald-100 mt-1">Praktik Mengajar: 13, 19, & 20 Agustus 2026 (Kelas XI-I SMAN 2 Salatiga • 3 Pertemuan)</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Video Card Siklus 2 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fa-brands fa-youtube text-red-600 text-base"></i> Video Mengajar Siklus 2
+                            </h4>
+                            <span class="text-xs text-slate-400">YouTube Embed</span>
+                        </div>
+                        <div class="relative w-full rounded-xl overflow-hidden bg-slate-900 aspect-video shadow-sm">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/0uWYJvhklpw" title="Video Mengajar Siklus 2" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-xs text-slate-600">Praktik mengajar berpendekatan Culturally Responsive Teaching (CRT) mengintegrasikan kasus antrean kantin sekolah pada 4 pilar CT.</p>
+                    </div>
+
+                    <!-- Laporan Siklus 2 Preview -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-file-pdf text-red-500 text-base"></i> Laporan Siklus 2
+                            </h4>
+                            <a href="https://drive.google.com/file/d/1vjb-FCMEBJwPcjaVX7GJLJRE1S9j-RmK/view?usp=drive_link" target="_blank" class="text-xs font-bold text-ppg-600 hover:underline flex items-center gap-1">
+                                Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                        <div class="w-full h-64 bg-slate-900 rounded-xl border border-slate-200 overflow-hidden relative">
+                            <iframe id="frame-laporan-2" src="https://drive.google.com/file/d/1vjb-FCMEBJwPcjaVX7GJLJRE1S9j-RmK/preview" class="w-full h-full border-0 bg-white" title="Laporan Siklus 2 Preview"></iframe>
+                        </div>
+                        <p class="text-xs text-slate-600">Laporan mencakup analisis Dekomposisi, Pola, Abstraksi, Algoritma beserta evaluasi hambatan siswa pada pilar abstraksi.</p>
+                    </div>
+                </div>
+
+                <!-- ANALISIS ARTEFAK PEDAGOGIS SIKLUS 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-microscope text-emerald-600"></i> Analisis Kritis Artefak Pembelajaran Siklus 2
+                        </h4>
+                        <span class="text-xs bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-md border border-emerald-200">CRT Integration • 3 Pertemuan</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-utensils text-emerald-600 mr-1"></i> Konteks Budaya & Kasus Kantin</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Kasus nyata antrean kantin SMA N 2 Salatiga dijadikan studi utama. Siswa antusias membedah masalah karena mengalami langsung setiap istirahat.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-brain text-purple-600 mr-1"></i> 4 Pilar Berpikir Komputasional</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Pemetaan bertahap dari Dekomposisi ke Algoritma membantu siswa melihat keterkaitan antar-pilar CT secara utuh dan sistematis.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-user-group text-blue-600 mr-1"></i> Peran Kelompok Tertulis</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Pembagian peran (Ketua, Penulis, Penyaji) dalam LKPD terbukti menghilangkan monopoli diskusi oleh siswa yang lebih mahir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVE INTERACTIVE ARTEFACT PREVIEWER HUB SIKLUS 2 (7 ARTEFAK LENGKAP 3 PERTEMUAN) -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                                <i class="fa-solid fa-folder-open text-emerald-600"></i> Interactive Artefact Viewer Hub - Siklus 2 (7 Artefak)
+                            </h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Pilih salah satu artefak dari 3 Pertemuan di bawah untuk langsung menampilkannya pada bingkai preview interaktif.</p>
+                        </div>
+                        <a id="btn-artefak-direct-2" href="https://drive.google.com/file/d/15VKkIRen9-_Ax8JhwraoJjra31qlHMON/view?usp=drive_link" target="_blank" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 self-start sm:self-auto">
+                            <span>Buka Dokumen Aktif</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <!-- Artefak Selector Sub-Tabs -->
+                    <div class="flex flex-wrap gap-2 text-xs font-medium">
+                        <button onclick="changeArtefakPreview('2', 'https://drive.google.com/file/d/15VKkIRen9-_Ax8JhwraoJjra31qlHMON/preview', 'https://drive.google.com/file/d/15VKkIRen9-_Ax8JhwraoJjra31qlHMON/view?usp=drive_link', this)" class="art-tab-2 px-3 py-2 rounded-xl bg-emerald-600 text-white font-semibold transition">
+                            <i class="fa-solid fa-file-pdf mr-1"></i> Modul Ajar Siklus 2
+                        </button>
+                        <button onclick="changeArtefakPreview('2', 'https://drive.google.com/file/d/1JWgAiw1__nQYfW3fl9-hUkEBc3ZVOyPz/preview', 'https://drive.google.com/file/d/1JWgAiw1__nQYfW3fl9-hUkEBc3ZVOyPz/view?usp=drive_link', this)" class="art-tab-2 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT Pertemuan 1 (Dekomposisi)
+                        </button>
+                        <button onclick="changeArtefakPreview('2', 'https://drive.google.com/file/d/1NG-MDoXlMo2A4ExhfZHR17mkr6GN40pz/preview', 'https://drive.google.com/file/d/1NG-MDoXlMo2A4ExhfZHR17mkr6GN40pz/view?usp=drive_link', this)" class="art-tab-2 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT Pertemuan 2 (Pola & Abstraksi)
+                        </button>
+                        <button onclick="changeArtefakPreview('2', 'https://drive.google.com/file/d/1DBmHNRfqMJcbaGAZN35254vwH86pCkfI/preview', 'https://drive.google.com/file/d/1DBmHNRfqMJcbaGAZN35254vwH86pCkfI/view?usp=drive_link', this)" class="art-tab-2 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT Pertemuan 3 (Algoritma Solusi)
+                        </button>
+                        <button onclick="changeArtefakPreview('2', 'https://drive.google.com/file/d/1X0m_KLWrfSyiR49tpBwpSBpfIg_I-5dd/preview', 'https://drive.google.com/file/d/1X0m_KLWrfSyiR49tpBwpSBpfIg_I-5dd/view?usp=drive_link', this)" class="art-tab-2 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-1"></i> LKPD P1 Kantin (Dekomposisi)
+                        </button>
+                        <button onclick="changeArtefakPreview('2', 'https://drive.google.com/file/d/1BTXZTaLHkmu4rek1-44GNV2xQhnnW49I/preview', 'https://drive.google.com/file/d/1BTXZTaLHkmu4rek1-44GNV2xQhnnW49I/view?usp=drive_link', this)" class="art-tab-2 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-1"></i> LKPD P2 (Pola & Abstraksi)
+                        </button>
+                        <button onclick="changeArtefakPreview('2', 'https://drive.google.com/file/d/1MsycoVzxQbBUJ8NdbRgsRN0T6r6hPq78/preview', 'https://drive.google.com/file/d/1MsycoVzxQbBUJ8NdbRgsRN0T6r6hPq78/view?usp=drive_link', this)" class="art-tab-2 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-1"></i> LKPD P3 (Algoritma Solusi)
+                        </button>
+                    </div>
+
+                    <!-- Artefak Display Frame -->
+                    <div class="w-full h-[480px] bg-slate-900 rounded-xl border border-slate-200 overflow-hidden relative shadow-inner">
+                        <iframe id="artefak-viewer-2" src="https://drive.google.com/file/d/15VKkIRen9-_Ax8JhwraoJjra31qlHMON/preview" class="w-full h-full border-0 bg-white" title="Preview Artefak Siklus 2"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIKLUS 3 SUB CONTENT -->
+            <div id="siklus-content-3" class="siklus-sub-content hidden space-y-8">
+                <!-- Header Banner Siklus 3 -->
+                <div class="bg-gradient-to-r from-amber-900 to-orange-700 rounded-2xl p-6 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="px-2.5 py-1 bg-amber-500/30 text-amber-100 rounded-md text-xs font-bold uppercase tracking-wider">Siklus 3 • Python Google Colab</span>
+                        <h3 class="text-xl font-bold mt-2">Dasar Pemrograman Python (Variabel, Percabangan & Perulangan)</h3>
+                        <p class="text-xs text-amber-100 mt-1">Praktik Mengajar: 26 & 27 Agustus 2026 (Kelas XI-I SMAN 2 Salatiga • 2 Pertemuan)</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Video Card Siklus 3 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fa-brands fa-youtube text-red-600 text-base"></i> Video Mengajar Siklus 3
+                            </h4>
+                            <span class="text-xs text-slate-400">YouTube Embed</span>
+                        </div>
+                        <div class="relative w-full rounded-xl overflow-hidden bg-slate-900 aspect-video shadow-sm">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/OPm4coE2Rnw" title="Video Mengajar Siklus 3" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-xs text-slate-600">Pelaksanaan praktik mengajar interaktif: tipe data, variabel, percabangan if else, perulangan for/while, dan live coding di Google Colab.</p>
+                    </div>
+
+                    <!-- Laporan Siklus 3 Preview -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-file-pdf text-red-500 text-base"></i> Laporan Siklus 3
+                            </h4>
+                            <a href="https://drive.google.com/file/d/1cXQ2UCtwjjE69m45QoIH6JKUHeB5z7Ri/view?usp=drive_link" target="_blank" class="text-xs font-bold text-ppg-600 hover:underline flex items-center gap-1">
+                                Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                        <div class="w-full h-64 bg-slate-900 rounded-xl border border-slate-200 overflow-hidden relative">
+                            <iframe id="frame-laporan-3" src="https://drive.google.com/file/d/1cXQ2UCtwjjE69m45QoIH6JKUHeB5z7Ri/preview" class="w-full h-full border-0 bg-white" title="Laporan Siklus 3 Preview"></iframe>
+                        </div>
+                        <p class="text-xs text-slate-600">Laporan memuat evaluasi transisi pseudocode ke Python sintaks, penanganan error indentasi, dan penggunaan lembar 3 jenjang.</p>
+                    </div>
+                </div>
+
+                <!-- ANALISIS ARTEFAK PEDAGOGIS SIKLUS 3 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-microscope text-amber-600"></i> Analisis Kritis Artefak Pembelajaran Siklus 3
+                        </h4>
+                        <span class="text-xs bg-amber-50 text-amber-700 font-semibold px-2.5 py-1 rounded-md border border-amber-200">Google Colab Integration • 2 Pertemuan</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-laptop-code text-amber-600 mr-1"></i> Live Coding & Colab</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Penggunaan Google Colab memungkinkan siswa langsung mengeksekusi kode di browser tanpa kendala instalasi software yang rumit.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-layer-group text-blue-600 mr-1"></i> Lembar Praktik 3 Jenjang</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Penerapan TaRL: Pemula (melengkapi kode), Menengah (mengisi kerangka), Mahir (membuat kode mandiri dari kasus warung/presensi).
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-bug text-red-600 mr-1"></i> Penanganan Error Terjadwal</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Error umum seperti <code>SyntaxError: expected ':'</code> sengaja dibahas di awal agar siswa tidak merasa takut atau frustrasi saat menghadapi bug.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVE INTERACTIVE ARTEFACT PREVIEWER HUB SIKLUS 3 (5 ARTEFAK LENGKAP 2 PERTEMUAN) -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                                <i class="fa-solid fa-folder-open text-amber-600"></i> Interactive Artefact Viewer Hub - Siklus 3 (5 Artefak)
+                            </h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Pilih artefak pembelajaran di bawah untuk langsung menampilkannya pada bingkai preview interaktif.</p>
+                        </div>
+                        <a id="btn-artefak-direct-3" href="https://drive.google.com/file/d/19ARDgRxwmkztMEQa2dhQlFzUgig1zjYM/view?usp=drive_link" target="_blank" class="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 self-start sm:self-auto">
+                            <span>Buka Dokumen Aktif</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <!-- Artefak Selector Sub-Tabs -->
+                    <div class="flex flex-wrap gap-2 text-xs font-medium">
+                        <button onclick="changeArtefakPreview('3', 'https://drive.google.com/file/d/19ARDgRxwmkztMEQa2dhQlFzUgig1zjYM/preview', 'https://drive.google.com/file/d/19ARDgRxwmkztMEQa2dhQlFzUgig1zjYM/view?usp=drive_link', this)" class="art-tab-3 px-3 py-2 rounded-xl bg-amber-600 text-white font-semibold transition">
+                            <i class="fa-solid fa-file-pdf mr-1"></i> Modul Ajar Siklus 3
+                        </button>
+                        <button onclick="changeArtefakPreview('3', 'https://drive.google.com/file/d/1EyTc0X2fjxjeJ3ucX6Yzr-gd_PAJhrcT/preview', 'https://drive.google.com/file/d/1EyTc0X2fjxjeJ3ucX6Yzr-gd_PAJhrcT/view?usp=drive_link', this)" class="art-tab-3 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT P1 (Variabel & Percabangan)
+                        </button>
+                        <button onclick="changeArtefakPreview('3', 'https://drive.google.com/file/d/1YveMFqd1l9TqfvFMpmp-CQfPDRLnIRoY/preview', 'https://drive.google.com/file/d/1YveMFqd1l9TqfvFMpmp-CQfPDRLnIRoY/view?usp=drive_link', this)" class="art-tab-3 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT P2 (Perulangan Python)
+                        </button>
+                        <button onclick="changeArtefakPreview('3', 'https://drive.google.com/file/d/1Zr6RbO6-IBi8MJbnWXQ1d0aBu4WcYX_y/preview', 'https://drive.google.com/file/d/1Zr6RbO6-IBi8MJbnWXQ1d0aBu4WcYX_y/view?usp=drive_link', this)" class="art-tab-3 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-1"></i> LKPD P1 Program Kasir
+                        </button>
+                        <button onclick="changeArtefakPreview('3', 'https://drive.google.com/file/d/18ilqPtS4bOS3rnCjxz3PJf58NnRdeAle/preview', 'https://drive.google.com/file/d/18ilqPtS4bOS3rnCjxz3PJf58NnRdeAle/view?usp=drive_link', this)" class="art-tab-3 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-1"></i> LKPD P2 Perulangan Presensi
+                        </button>
+                    </div>
+
+                    <!-- Artefak Display Frame -->
+                    <div class="w-full h-[480px] bg-slate-900 rounded-xl border border-slate-200 overflow-hidden relative shadow-inner">
+                        <iframe id="artefak-viewer-3" src="https://drive.google.com/file/d/19ARDgRxwmkztMEQa2dhQlFzUgig1zjYM/preview" class="w-full h-full border-0 bg-white" title="Preview Artefak Siklus 3"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIKLUS 4 SUB CONTENT -->
+            <div id="siklus-content-4" class="siklus-sub-content hidden space-y-8">
+                <!-- Header Banner Siklus 4 -->
+                <div class="bg-gradient-to-r from-purple-900 to-indigo-700 rounded-2xl p-6 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="px-2.5 py-1 bg-purple-500/30 text-purple-100 rounded-md text-xs font-bold uppercase tracking-wider">Siklus 4 • Projek & Ulangan Praktik</span>
+                        <h3 class="text-xl font-bold mt-2">Struktur Data (List, Stack, Queue), Fungsi & Live Coding Open Notes</h3>
+                        <p class="text-xs text-purple-100 mt-1">Praktik Mengajar: 2 & 3 September 2026 (Kelas XI-I SMAN 2 Salatiga • 2 Pertemuan)</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Video Card Siklus 4 -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fa-brands fa-youtube text-red-600 text-base"></i> Video Mengajar Siklus 4
+                            </h4>
+                            <span class="text-xs text-slate-400">YouTube Embed</span>
+                        </div>
+                        <div class="relative w-full rounded-xl overflow-hidden bg-slate-900 aspect-video shadow-sm">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/Iq8W2OJHuaA" title="Video Mengajar Siklus 4" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-xs text-slate-600">Praktik mengajar puncak: List, Stack, Queue, Fungsi (def), serta Ujian Praktik Live Coding Open Notes berpasangan.</p>
+                    </div>
+
+                    <!-- Laporan Siklus 4 Preview (ID Google Drive diperbaiki tanpa spasi) -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-file-pdf text-red-500 text-base"></i> Laporan Siklus 4
+                            </h4>
+                            <a href="https://drive.google.com/file/d/1BxC7M1pdpMZug69pjpbNo6f-jDhz7cgj/view?usp=drive_link" target="_blank" class="text-xs font-bold text-ppg-600 hover:underline flex items-center gap-1">
+                                Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                        <div class="w-full h-64 bg-slate-900 rounded-xl border border-slate-200 overflow-hidden relative">
+                            <iframe id="frame-laporan-4" src="https://drive.google.com/file/d/1BxC7M1pdpMZug69pjpbNo6f-jDhz7cgj/preview" class="w-full h-full border-0 bg-white" title="Laporan Siklus 4 Preview"></iframe>
+                        </div>
+                        <p class="text-xs text-slate-600">Laporan memuat evaluasi ujian praktik projek, teknik prediksi keluaran kode, dan pencapaian kompetensi akhir peserta didik.</p>
+                    </div>
+                </div>
+
+                <!-- ANALISIS ARTEFAK PEDAGOGIS SIKLUS 4 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-microscope text-purple-600"></i> Analisis Kritis Artefak Pembelajaran Siklus 4
+                        </h4>
+                        <span class="text-xs bg-purple-50 text-purple-700 font-semibold px-2.5 py-1 rounded-md border border-purple-200">Open Notes Evaluation • 2 Pertemuan</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-lightbulb text-purple-600 mr-1"></i> Prediksi Keluaran Sebelum Running</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Lembar prediksi membuat siswa berpikir analitis sebelum menekan tombol <em>run</em>, terbukti meningkatkan ketelitian logika sebesar 30%.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-layer-group text-emerald-600 mr-1"></i> Analogi Piring (Stack) & Antrean (Queue)</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Visualisasi LIFO & FIFO dengan tumpukan piring dan antrean loket mempercepat pemahaman manipulasi elemen <code>append()</code>, <code>pop()</code>, dan <code>pop(0)</code>.
+                            </p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+                            <span class="font-bold text-slate-800 block text-sm"><i class="fa-solid fa-vial-circle-check text-blue-600 mr-1"></i> Ulangan Praktik Open Notes</span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Penilaian berfokus pada logika dan keberhasilan program (40%), kesesuaian materi (30%), dan penjelasan lisan alur kode di meja guru (30%).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVE INTERACTIVE ARTEFACT PREVIEWER HUB SIKLUS 4 (6 ARTEFAK LENGKAP 2 PERTEMUAN) -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                                <i class="fa-solid fa-folder-open text-purple-600"></i> Interactive Artefact Viewer Hub - Siklus 4 (6 Artefak)
+                            </h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Pilih artefak pembelajaran di bawah untuk langsung menampilkannya pada bingkai preview interaktif.</p>
+                        </div>
+                        <a id="btn-artefak-direct-4" href="https://drive.google.com/file/d/1lY8hpm1fmBKnvOF_YKqg9qQonTfci097/view?usp=drive_link" target="_blank" class="px-3.5 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 self-start sm:self-auto">
+                            <span>Buka Dokumen Aktif</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <!-- Artefak Selector Sub-Tabs -->
+                    <div class="flex flex-wrap gap-2 text-xs font-medium">
+                        <button onclick="changeArtefakPreview('4', 'https://drive.google.com/file/d/1lY8hpm1fmBKnvOF_YKqg9qQonTfci097/preview', 'https://drive.google.com/file/d/1lY8hpm1fmBKnvOF_YKqg9qQonTfci097/view?usp=drive_link', this)" class="art-tab-4 px-3 py-2 rounded-xl bg-purple-600 text-white font-semibold transition">
+                            <i class="fa-solid fa-file-pdf mr-1"></i> Modul Ajar Siklus 4
+                        </button>
+                        <button onclick="changeArtefakPreview('4', 'https://drive.google.com/file/d/1jLD9GX45TKCvoiAT9L3DCWq0lKzw6_SJ/preview', 'https://drive.google.com/file/d/1jLD9GX45TKCvoiAT9L3DCWq0lKzw6_SJ/view?usp=drive_link', this)" class="art-tab-4 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT P1 Part 1 (List & Stack)
+                        </button>
+                        <button onclick="changeArtefakPreview('4', 'https://drive.google.com/file/d/17TrC1gkfZ16EoIoQqJmWeorXpmta_FoB/preview', 'https://drive.google.com/file/d/17TrC1gkfZ16EoIoQqJmWeorXpmta_FoB/view?usp=drive_link', this)" class="art-tab-4 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT P1 Part 2 (Queue & Fungsi)
+                        </button>
+                        <button onclick="changeArtefakPreview('4', 'https://drive.google.com/file/d/19B10EG-lQtoUCOoFSPFQI6ZhzLkURs7k/preview', 'https://drive.google.com/file/d/19B10EG-lQtoUCOoFSPFQI6ZhzLkURs7k/view?usp=drive_link', this)" class="art-tab-4 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-powerpoint text-amber-500 mr-1"></i> PPT P2 (Ujian Praktik)
+                        </button>
+                        <button onclick="changeArtefakPreview('4', 'https://drive.google.com/file/d/1OcmUK7STqVhRaoydcSEncwoal_Z_fTx2/preview', 'https://drive.google.com/file/d/1OcmUK7STqVhRaoydcSEncwoal_Z_fTx2/view?usp=drive_link', this)" class="art-tab-4 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-1"></i> LKPD P1 (Struktur Data)
+                        </button>
+                        <button onclick="changeArtefakPreview('4', 'https://drive.google.com/file/d/1g_os4tok41H81cF6oUtCa7H-SAhbWyaj/preview', 'https://drive.google.com/file/d/1g_os4tok41H81cF6oUtCa7H-SAhbWyaj/view?usp=drive_link', this)" class="art-tab-4 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                            <i class="fa-solid fa-file-word text-blue-500 mr-1"></i> LKPD P2 (Ulangan Praktik)
+                        </button>
+                    </div>
+
+                    <!-- Artefak Display Frame (ID Google Drive diperbaiki tanpa spasi) -->
+                    <div class="w-full h-[480px] bg-slate-900 rounded-xl border border-slate-200 overflow-hidden relative shadow-inner">
+                        <iframe id="artefak-viewer-4" src="https://drive.google.com/file/d/1lY8hpm1fmBKnvOF_YKqg9qQonTfci097/preview" class="w-full h-full border-0 bg-white" title="Preview Artefak Siklus 4"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: KEGIATAN NON-MENGAJAR (87 JAM LENGKAP) -->
+        <div id="tab-non-mengajar" class="main-tab-content hidden space-y-8 animate-in fade-in duration-300">
+            <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <span class="text-xs font-bold text-ppg-600 tracking-wider uppercase">Tugas Pelengkap PPL Mandiri</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900">Laporan Kegiatan Non-Mengajar (13 Juli - 23 Oktober 2026)</h2>
+                </div>
+                <span class="px-3 py-1 bg-purple-50 text-purple-700 border border-purple-200 rounded-lg text-xs font-semibold self-start sm:self-auto">
+                    Total Rekap: 87 Jam Terverifikasi
+                </span>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden p-6 sm:p-8 space-y-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Text Info & Summary -->
+                    <div class="lg:col-span-1 space-y-4 text-xs sm:text-sm text-slate-600 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Ringkasan Kegiatan Non-Mengajar</h3>
+                            <p class="mb-4 leading-relaxed">
+                                Pelaksanaan kegiatan non-mengajar dijalankan secara konsisten dengan mengalokasikan minimal 2,5 jam per minggu sesuai ketentuan PPL Mandiri.
+                            </p>
+
+                            <div class="space-y-3 mb-4">
+                                <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+                                    <span class="font-bold text-slate-800 text-xs sm:text-sm block mb-1"><i class="fa-solid fa-drum text-ppg-600 mr-1"></i> 1. Kegiatan Rutin (35 Jam)</span>
+                                    <ul class="list-disc list-inside text-xs space-y-1 text-slate-600">
+                                        <li><strong>Drumband Gita Bahana Sakti:</strong> Pendampingan latihan rutin setiap Kamis (15.30 - 17.00 WIB) & Penampilan MPLS.</li>
+                                        <li><strong>Guru Piket & 5S:</strong> Pembiasaan pagi 5S, penertiban keterlambatan, Senam Jumat, & Pendampingan Doa.</li>
+                                    </ul>
+                                </div>
+                                <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+                                    <span class="font-bold text-slate-800 text-xs sm:text-sm block mb-1"><i class="fa-solid fa-campground text-amber-600 mr-1"></i> 2. Kegiatan Tidak Rutin (52 Jam)</span>
+                                    <ul class="list-disc list-inside text-xs space-y-1 text-slate-600">
+                                        <li><strong>Perkemahan PCP 2026:</strong> Pembina Pendamping Penerimaan Calon Penegak Gudep 03.161-03.162 di Puskepram Candra Bhirawa, Ungaran (7-9 Oktober 2026).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-800 text-xs">
+                            <i class="fa-solid fa-circle-check mr-1 text-emerald-600"></i> Disetujui Pamong Ignasius Panggayuh, M.Kom. & DPL Hanita Yulia, M.Pd.
+                        </div>
+                    </div>
+
+                    <!-- Direct Inline PDF Viewer Google Drive Embed -->
+                    <div class="lg:col-span-2 bg-slate-50 rounded-2xl p-4 border border-slate-200 flex flex-col justify-between space-y-3">
+                        <div class="flex items-center justify-between px-1">
+                            <span class="font-bold text-slate-900 text-sm"><i class="fa-solid fa-file-lines text-ppg-600 mr-1.5"></i> Pratinjau Dokumen Laporan Non-Mengajar</span>
+                            <span class="text-xs text-slate-400">PDF Viewer</span>
+                        </div>
+
+                        <div class="w-full h-[440px] bg-slate-900 rounded-xl border border-slate-200 overflow-hidden shadow-inner relative">
+                            <iframe 
+                                id="frame-nonmengajar"
+                                src="https://drive.google.com/file/d/1yCya4WT9Kd1OPPpu4F9RVj5XwYNA2-J5/preview" 
+                                class="w-full h-full border-0 bg-white" 
+                                title="Laporan Kegiatan Non-Mengajar PDF Preview">
+                            </iframe>
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs px-1">
+                            <span class="text-slate-500 truncate max-w-[250px]"><i class="fa-solid fa-file-pdf text-red-500 mr-1"></i> Laporan_Nonmengajar_PPLM_Ghanang.pdf</span>
+                            <a href="https://drive.google.com/file/d/1yCya4WT9Kd1OPPpu4F9RVj5XwYNA2-J5/view?usp=sharing" target="_blank" class="font-bold text-ppg-600 hover:text-ppg-800 flex items-center gap-1">
+                                Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GALERI FOTO KEGIATAN NON-MENGAJAR (SLOT FOTO DOKUMENTASI) -->
+                <div class="border-t border-slate-100 pt-6 space-y-4">
+                    <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                        <i class="fa-solid fa-camera-retro text-ppg-600"></i> Galeri Foto Dokumentasi Kegiatan Non-Mengajar
+                    </h4>
+                    <p class="text-xs text-slate-500">Berikut adalah dokumentasi visual pelaksanaan pendampingan ekstrakurikuler, tugas piket pembiasaan, dan kegiatan lapangan:</p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <!-- Slot Foto 1: Drumband -->
+                        <div class="group relative rounded-xl overflow-hidden border border-slate-200 bg-slate-100 aspect-square shadow-sm">
+                            <img src="https://lh3.googleusercontent.com/d/1nqNfGscTCNjFezZAygm8IXdoGBQCeusH" alt="Foto Drumband" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-3 flex flex-col justify-end text-white text-[11px]">
+                                <span class="font-bold">Drumband</span>
+                                <span class="text-[10px] text-slate-300">Gita Bahana Sakti SMANDA</span>
+                            </div>
+                        </div>
+                        <!-- Slot Foto 2: Guru Piket -->
+                        <div class="group relative rounded-xl overflow-hidden border border-slate-200 bg-slate-100 aspect-square shadow-sm">
+                            <img src="https://lh3.googleusercontent.com/d/1Ll6eg7nKUUrIHGhZMyZ1iTNXuI4fteRy" alt="Foto Piket 5S" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-3 flex flex-col justify-end text-white text-[11px]">
+                                <span class="font-bold">Guru Piket 5S</span>
+                                <span class="text-[10px] text-slate-300">Pembiasaan Menyambut Siswa</span>
+                            </div>
+                        </div>
+                        <!-- Slot Foto 3: Perkemahan PCP 1 -->
+                        <div class="group relative rounded-xl overflow-hidden border border-slate-200 bg-slate-100 aspect-square shadow-sm">
+                            <img src="https://lh3.googleusercontent.com/d/1wadzFxs_PoNUsa5z2n1wcm1BTullxmO5" alt="Foto Perkemahan Ungaran" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-3 flex flex-col justify-end text-white text-[11px]">
+                                <span class="font-bold">Puskepram Ungaran</span>
+                                <span class="text-[10px] text-slate-300">PCP Penegak 7-9 Okt 2026</span>
+                            </div>
+                        </div>
+                        <!-- Slot Foto 4: Perkemahan PCP 2 -->
+                        <div class="group relative rounded-xl overflow-hidden border border-slate-200 bg-slate-100 aspect-square shadow-sm">
+                            <img src="https://lh3.googleusercontent.com/d/1w_9Nlcn8C0-xbHz3CrRBiq8922bVS0Mu" alt="Foto Api Unggun" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-3 flex flex-col justify-end text-white text-[11px]">
+                                <span class="font-bold">Api Unggun & Pentas</span>
+                                <span class="text-[10px] text-slate-300">Malam Inagurasi Penegak</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: REFLEKSI DIRI & RENCANA TINDAK LANJUT (RTL) -->
+        <div id="tab-refleksi" class="main-tab-content hidden space-y-8 animate-in fade-in duration-300">
+            <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <span class="text-xs font-bold text-ppg-600 tracking-wider uppercase">Evaluasi Kritis & Pengembangan Diri</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900">Refleksi Kritis & Rencana Tindak Lanjut (RTL)</h2>
+                </div>
+                <span class="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-xs font-semibold self-start sm:self-auto">
+                    Kriteria Refleksi 20 Poin
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Profil Guru Model & Filosofi KHD -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-ppg-100 text-ppg-600 flex items-center justify-center font-bold text-lg mb-4">
+                            <i class="fa-solid fa-user-ninja"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Profil Guru Model yang Dituju</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Menjadi pendidik Informatika yang bertindak sebagai fasilitator yang menginspirasi (<em>Agent of Change</em>). Pendidik yang tidak hanya mengajarkan sintaks pemrograman, namun menanamkan etika digital, berpikir kritis terstruktur, dan empati inklusif sosial.
+                        </p>
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100 text-xs">
+                            <span class="font-bold text-slate-800 block mb-1">Filosofi Ki Hajar Dewantara:</span>
+                            <blockquote class="italic text-slate-600 leading-relaxed">
+                                "Menuntun segala kodrat yang ada pada anak-anak, agar mereka dapat mencapai keselamatan dan kebahagiaan setinggi-tingginya baik sebagai manusia maupun anggota masyarakat."
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kelebihan & Tantangan Pembelajaran -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-lg mb-4">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Evaluasi Kekuatan & Kekurangan</h3>
+                        
+                        <div class="space-y-3 text-xs mb-4">
+                            <div class="p-3 bg-emerald-50/60 rounded-xl border border-emerald-100">
+                                <span class="font-bold text-emerald-800 block mb-1"><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Kekuatan Utama:</span>
+                                <p class="text-slate-600">Integrasi TaRL & CRT berbasis kasus nyata (kantin, warung, presensi) terbukti membangun pemahaman mendalam. Media Google Colab meningkatkan keberanian logika murid.</p>
+                            </div>
+                            <div class="p-3 bg-amber-50/60 rounded-xl border border-amber-100">
+                                <span class="font-bold text-amber-800 block mb-1"><i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i> Area Evaluasi:</span>
+                                <p class="text-slate-600">Manajemen alokasi waktu pada live coding dan antrean ujian praktik perlu keteraturan nomor urut serta pembatasan waktu penjelas kode per pasangan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rencana Tindak Lanjut (RTL) -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-lg mb-4">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Rencana Tindak Lanjut (RTL)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                            Langkah konkret perbaikan praktik berkelanjutan:
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-slate-600">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-ppg-600 mt-0.5"></i>
+                                <span>Menyediakan Kartu Debugging & Lembar Prediksi Keluaran sebelum praktik kode dijalankan.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-ppg-600 mt-0.5"></i>
+                                <span>Menerapkan rotasi waktu yang ketat untuk peran Pengetik & Pengamat dalam pasangan coding.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-ppg-600 mt-0.5"></i>
+                                <span>Mengembangkan projek penutup komprehensif yang menggabungkan seluruh modul Informatika.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white border-t border-slate-800 py-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-ppg-600 text-white flex items-center justify-center font-bold text-lg">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm">E-Portofolio PPG Prajabatan 2026</h4>
+                    <p class="text-xs text-slate-400">Ghanang Adhin Nugroho, S.Kom. (NIM: 95202534N) - UKSW</p>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400 text-center sm:text-right">
+                <p>Disusun untuk Tugas PPL Mandiri SMA Negeri 2 Salatiga</p>
+                <p class="mt-1 text-slate-500">Direktorat Pendidikan Profesi Guru - Kementerian Pendidikan</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (SPA TAB NAVIGATION & LIVE ARTEFACT PREVIEWER) -->
+    <script>
+        // Main Tab Switcher Logic
+        function switchMainTab(tabId) {
+            document.querySelectorAll('.main-tab-content').forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-ppg-600', 'bg-ppg-50');
+                btn.classList.add('hover:text-ppg-600', 'hover:bg-slate-100');
+            });
+
+            const targetContent = document.getElementById('tab-' + tabId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+                targetContent.classList.add('block');
+            }
+
+            const activeNav = document.getElementById('nav-' + tabId);
+            if (activeNav) {
+                activeNav.classList.add('text-ppg-600', 'bg-ppg-50');
+                activeNav.classList.remove('hover:text-ppg-600', 'hover:bg-slate-100');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Siklus Sub Tab Switcher Logic
+        function switchSiklusSubTab(siklusId) {
+            document.querySelectorAll('.siklus-sub-content').forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+
+            document.querySelectorAll('.siklus-sub-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-ppg-700', 'shadow-sm');
+                btn.classList.add('hover:text-ppg-600');
+            });
+
+            const targetSiklus = document.getElementById('siklus-content-' + siklusId.replace('siklus', ''));
+            if (targetSiklus) {
+                targetSiklus.classList.remove('hidden');
+                targetSiklus.classList.add('block');
+            }
+
+            const activeSubBtn = document.getElementById('sub-' + siklusId);
+            if (activeSubBtn) {
+                activeSubBtn.classList.add('bg-white', 'text-ppg-700', 'shadow-sm');
+                activeSubBtn.classList.remove('hover:text-ppg-600');
+            }
+        }
+
+        // Dynamic Interactive Artefact Previewer Handler
+        function changeArtefakPreview(siklusNum, previewUrl, directUrl, clickedBtn) {
+            const viewerFrame = document.getElementById('artefak-viewer-' + siklusNum);
+            const directBtn = document.getElementById('btn-artefak-direct-' + siklusNum);
+
+            if (viewerFrame) {
+                viewerFrame.src = previewUrl;
+            }
+            if (directBtn) {
+                directBtn.href = directUrl;
+            }
+
+            // Update sub-tab button active styling
+            document.querySelectorAll('.art-tab-' + siklusNum).forEach(btn => {
+                btn.classList.remove('bg-ppg-600', 'bg-emerald-600', 'bg-amber-600', 'bg-purple-600', 'text-white', 'font-semibold');
+                btn.classList.add('bg-slate-100', 'hover:bg-slate-200', 'text-slate-700');
+            });
+
+            let activeBgClass = 'bg-ppg-600';
+            if (siklusNum === '2') activeBgClass = 'bg-emerald-600';
+            if (siklusNum === '3') activeBgClass = 'bg-amber-600';
+            if (siklusNum === '4') activeBgClass = 'bg-purple-600';
+
+            clickedBtn.classList.remove('bg-slate-100', 'hover:bg-slate-200', 'text-slate-700');
+            clickedBtn.classList.add(activeBgClass, 'text-white', 'font-semibold');
+        }
+
+        // Reload iframe helper for Google Drive embed fallback
+        function reloadIframe(frameId, url) {
+            const frame = document.getElementById(frameId);
+            if (frame) {
+                frame.src = url;
+            }
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
